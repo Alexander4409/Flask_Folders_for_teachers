@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folders</title>
+    <!-- Подключаем Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .folder-card {
+            margin: 20px;
+        }
+
+        .folder-title {
+            font-weight: bold;
+        }
+
+        .card-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Предметы</h1>
+
+        <!-- Форма создания новой папки -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <form action="{{ url_for('index') }}" method="POST" class="input-group">
+                    <input type="text" name="folder_name" class="form-control" placeholder="Название новой папки" required>
+                    <button type="submit" class="btn btn-success">Создать папку</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Начало блока для папок -->
+        <div class="row mt-4">
+            {% for folder in folders %}
+                <div class="col-md-3">
+                    <div class="card folder-card">
+                        <div class="card-body">
+                            <h5 class="folder-title">Предмет {{ folder }}</h5>
+                            <a href="{{ url_for('folder_contents', folder_name=folder) }}" class="btn btn-primary card-button">Открыть</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Конец блока для папок -->
+    </div>
+
+    <!-- Подключаем Bootstrap JavaScript (если нужно для будущих интерактивных элементов) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

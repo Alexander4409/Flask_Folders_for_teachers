@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload File</title>
+</head>
+<body>
+    <h1>Upload File to {{ folder_name }}</h1>
+
+    <!-- Форма для загрузки файла -->
+    <form action="{{ url_for('upload_file', folder_name=folder_name) }}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    <!-- Кнопка возврата к просмотру содержимого папки -->
+    <button onclick="window.location.href='{{ url_for('folder_contents', folder_name=folder_name) }}'">Back to Folder</button>
+</body>
+</html>
