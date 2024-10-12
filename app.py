@@ -28,7 +28,6 @@ def index():
     return render_template('index.html', folders=folders)
 
 
-# Просмотр содержимого папки
 @app.route('/folder/<folder_name>', methods=['GET', 'POST'])
 def folder_contents(folder_name):
     folder_path = os.path.join(app.config['UPLOAD_FOLDER'], folder_name)
