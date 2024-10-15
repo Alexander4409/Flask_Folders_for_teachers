@@ -4,7 +4,7 @@ import shutil
 
 app = Flask(__name__)
 
-app.secret_key = '31413243214234'
+app.secret_key = '3141324321423kjhlkj4'
 # Папка, куда будут загружаться файлы (замени путь на свой)
 UPLOAD_FOLDER = r'C:\Users\aleks\PycharmProjects\Flask_Folders_for_teachers\Materials'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -23,6 +23,7 @@ def index():
             new_folder_path = os.path.join(app.config['UPLOAD_FOLDER'], new_folder)
             if not os.path.exists(new_folder_path):
                 os.makedirs(new_folder_path)
+                print("hello")
             return redirect(url_for('index'))
 
     return render_template('index.html', folders=folders)
